@@ -8,56 +8,121 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: #222;
+  background: #fff;
   display: flex;
   justify-content: center;
 }
 
+/* L'Oréal logo styling */
+.loreal-logo {
+  display: block;
+  margin: 0 auto 24px auto;
+  max-width: 180px;
+  height: auto;
+  filter: grayscale(100%) brightness(0.1) contrast(1.2);
+}
+
+/* page wrapper */
 .page-wrapper {
   width: 90%;
-  max-width: 900px;
+  max-width: 1200px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px 0 rgba(0, 0, 0, 0.08);
+  border: 1.5px solid #e5e5e5;
+  padding-bottom: 24px;
 }
 
 /* header */
 .site-header {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 48px;
+  padding-bottom: 8px;
 }
 
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #111;
   margin-bottom: 10px;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  /* Gold underline for luxury accent */
+  position: relative;
+  display: inline-block;
+}
+.site-title::after {
+  content: "";
+  display: block;
+  margin: 8px auto 0 auto;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #bfa046 0%, #e6c97b 100%);
+  border-radius: 2px;
 }
 
 /* chat window */
 .chatbox {
-  margin: 40px 0;
+  margin: 56px 0 56px 0; /* Increased top and bottom margin for more room */
+  padding-left: 32px; /* Add horizontal padding around chat area */
+  padding-right: 32px;
 }
 
 .chat-window {
-  height: 360px;
-  border: 1px solid #000;
-  padding: 20px;
+  height: 540px; /* Increased height for a longer chat log */
+  border: 1.5px solid #bfa046;
+  padding: 32px 28px; /* More padding inside the chat window */
   font-size: 18px;
   line-height: 1.5;
   overflow-y: auto;
-  background: #fafafa;
+  background: #faf9f6;
   white-space: pre-line;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(191, 160, 70, 0.06);
+  display: flex;
+  flex-direction: column;
 }
 
-/* messages */
+/* Animate new chat messages with a fade-in effect */
+@keyframes fadeInMsg {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .msg {
   margin-bottom: 14px;
   line-height: 1.5;
+  padding: 8px 14px;
+  border-radius: 8px;
+  max-width: 80%;
+  word-break: break-word;
+  /* Default: align left */
+  align-self: flex-start;
+  animation: fadeInMsg 0.5s;
 }
 
 .msg.user {
-  color: #000;
+  color: #222;
+  background: #fffbe6;
+  border: 1px solid #e6c97b;
+  align-self: flex-end; /* User messages on the right */
+  text-align: right;
 }
 
 .msg.ai {
-  color: #666666;
+  color: #444;
+  background: #f6f6f6;
+  border: 1px solid #e5e5e5;
+  align-self: flex-start; /* AI messages on the left */
+  text-align: left;
 }
 
 /* input row */
@@ -70,18 +135,23 @@ body {
 .chat-form input {
   flex: 1;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1.5px solid #bfa046;
   font-size: 18px;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  transition: border 0.2s;
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
+  outline: 2px solid #bfa046;
   outline-offset: 2px;
+  border-color: #e6c97b;
 }
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
+  background: linear-gradient(90deg, #bfa046 0%, #e6c97b 100%);
   color: #fff;
   border: none;
   padding: 12px;
@@ -91,7 +161,9 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px 0 rgba(191, 160, 70, 0.1);
+  transition: background 0.3s, box-shadow 0.2s;
 }
 
 .chat-form button .material-icons {
@@ -99,11 +171,12 @@ body {
 }
 
 .chat-form button:hover {
-  background: #666666;
+  background: linear-gradient(90deg, #e6c97b 0%, #bfa046 100%);
+  box-shadow: 0 4px 16px 0 rgba(191, 160, 70, 0.18);
 }
 
 .chat-form button:focus {
-  outline: 2px solid #000;
+  outline: 2px solid #bfa046;
   outline-offset: 2px;
 }
 
@@ -124,8 +197,9 @@ body {
 .site-footer {
   margin: 60px 0 40px;
   text-align: center;
-  font-size: 14px;
-  color: #666;
+  font-size: 15px;
+  color: #bfa046;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
 .site-footer nav {
@@ -134,10 +208,12 @@ body {
 
 .site-footer a {
   margin: 0 8px;
-  color: #000;
+  color: #bfa046;
   text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
 .site-footer a:hover {
-  color: #666666;
+  color: #e6c97b;
 }
